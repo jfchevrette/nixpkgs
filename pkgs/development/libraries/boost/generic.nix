@@ -82,7 +82,8 @@ let
   ] ++ optionals (stdenv.hostPlatform != stdenv.buildPlatform) [
     "address-model=${toString stdenv.hostPlatform.parsed.cpu.bits}"
     "architecture=${toString stdenv.hostPlatform.parsed.cpu.family}"
-    "binary-format=${toString stdenv.hostPlatform.parsed.kernel.execFormat.name}"
+    "binary-format=${if toString stdenv.hostPlatform.parsed.kernel.execFormat.name == "macho" then "mach-o"
+                     else toString stdenv.hostPlatform.parsed.kernel.execFormat.name}"
     "target-os=${toString stdenv.hostPlatform.parsed.kernel.name}"
 
     # adapted from table in boost manual
