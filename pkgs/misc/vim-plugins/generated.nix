@@ -3514,6 +3514,18 @@ final: prev:
     meta.homepage = "https://github.com/tomasr/molokai/";
   };
 
+  monokai-soda-vim = buildVimPluginFrom2Nix {
+    pname = "monokai-soda.vim";
+    version = "2021-07-03";
+    src = fetchFromGitHub {
+      owner = "jzelinskie";
+      repo = "monokai-soda.vim";
+      rev = "4f0f94a877f21f31aa58e9f8118add4bc6ffd7be";
+      sha256 = "0842hjplv5zmyfj677ipgqz32ya59f64nyk46m46zl0b77vb2ly0";
+    };
+    meta.homepage = "https://github.com/jzelinskie/monokai-soda.vim/";
+  };
+
   moonlight-nvim = buildVimPluginFrom2Nix {
     pname = "moonlight.nvim";
     version = "2021-05-16";
