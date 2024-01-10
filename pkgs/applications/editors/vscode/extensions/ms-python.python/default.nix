@@ -83,6 +83,6 @@ vscode-utils.buildVscodeMarketplaceExtension rec {
     changelog = "https://github.com/microsoft/vscode-python/releases";
     license = lib.licenses.mit;
     platforms = [ "x86_64-linux" "aarch64-darwin" "x86_64-darwin" ];
-    maintainers = [ lib.maintainers.jraygauthier lib.maintainers.jfchevrette ];
+    maintainers = [ lib.maintainers.jraygauthier ];
   };
 }
