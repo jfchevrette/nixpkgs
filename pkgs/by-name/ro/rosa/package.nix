@@ -2,13 +2,13 @@
 
 buildGoModule rec {
   pname = "rosa";
-  version = "1.2.46";
+  version = "1.2.48";
 
   src = fetchFromGitHub {
     owner = "openshift";
     repo = "rosa";
     rev = "v${version}";
-    hash = "sha256-XRoHapuH0MJNrtu+Rk/yxJqeqjNIbdGYqDB84q05rdA=";
+    hash = "sha256-qJKzJrCZKhaqoRxloTUqaRsR4/X/hoMxmDQCTNccTqk=";
   };
   vendorHash = null;
 
@@ -22,10 +22,9 @@ buildGoModule rec {
   '';
 
   preCheck = ''
-    # Workaround for cmd/list/rhRegion/cmd_test.go:39
-    #   Failed to get OCM regions: Can't retrieve shards: Get "https://api.stage.openshift.com/static/ocm-shards.json": dial tcp: lookup api.stage.openshift.com on [::1]:53: read udp [::1]:55793->[::1]:53: read: connection refused
-    substituteInPlace "cmd/list/rhRegion/cmd_test.go" \
-      --replace-fail "TestRhRegionCommand" "SkipRhRegionCommand"
+    # remove tests that require network access
+    rm cmd/list/rhRegion/cmd_test.go
+    rm cmd/describe/cluster/cmd_test.go
   '';
 
   nativeBuildInputs = [ installShellFiles ];
